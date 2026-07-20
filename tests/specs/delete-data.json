@@ -1,0 +1,20 @@
+[
+  {
+    "name": "/delete_data",
+    "steps": [
+      {
+        "expect": [
+          {
+            "method": "sendMessage",
+            "payload": {
+              "text": "Clear stored session history and email (if provided)"
+            }
+          }
+        ],
+        "send": {
+          "text": "/delete_data"
+        }
+      }
+    ]
+  }
+]
