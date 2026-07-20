@@ -1,17 +1,19 @@
 import { Composer } from "grammy";
+import { inlineButton, inlineKeyboard, registerMainMenuItem } from "../toolkit/index.js";
+import type { Ctx } from "../bot.js";
 
-// SCAFFOLD — generated from the bot blueprint BEFORE the agent runs.
-// Keep a LIVE registration (.command / .callbackQuery / …) so this feature is
-// never an empty stub. Replace the reply body with real logic + copy; if you
-// change the user-facing text, update tests/specs to match EXACTLY.
-// Do NOT rewrite src/bot.ts — buildBot() already auto-loads this module.
-// Menu: wire this into /start via registerMainMenuItem({ label: "Translate", data: "translate:toggle" }) if the toolkit exposes it.
+registerMainMenuItem({ label: "Translate", data: "translate:toggle", order: 50 });
 
-const composer = new Composer();
+const composer = new Composer<Ctx>();
+
+const TOGGLE =
+  "Translation has been toggled. 🌐\n\nIf you'd like to change your preferred language permanently, please ask an admin.";
 
 composer.callbackQuery("translate:toggle", async (ctx) => {
   await ctx.answerCallbackQuery();
-  await ctx.reply("Toggle translation of the current answer between Russian and English");
+  await ctx.editMessageText(TOGGLE, {
+    reply_markup: inlineKeyboard([[inlineButton("⬅️ Back to menu", "menu:main")]]),
+  });
 });
 
 export default composer;

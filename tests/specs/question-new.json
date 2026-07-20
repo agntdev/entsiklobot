@@ -5,9 +5,9 @@
       {
         "expect": [
           {
-            "method": "sendMessage",
+            "method": "editMessageText",
             "payload": {
-              "text": "Reset session and prompt for a new question"
+              "text": "Sure, let's try a new question. 🔄\n\nType your question or pick a topic below."
             }
           }
         ],

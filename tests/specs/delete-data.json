@@ -7,7 +7,7 @@
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Clear stored session history and email (if provided)"
+              "text": "Your session data has been cleared. 🗑️\n\nAll current information, questions, and answers have been removed from your session."
             }
           }
         ],

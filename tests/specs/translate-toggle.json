@@ -5,9 +5,9 @@
       {
         "expect": [
           {
-            "method": "sendMessage",
+            "method": "editMessageText",
             "payload": {
-              "text": "Toggle translation of the current answer between Russian and English"
+              "text": "Translation has been toggled. 🌐\n\nIf you'd like to change your preferred language permanently, please ask an admin."
             }
           }
         ],

@@ -5,9 +5,9 @@
       {
         "expect": [
           {
-            "method": "sendMessage",
+            "method": "editMessageText",
             "payload": {
-              "text": "Expand the current answer into a longer explanation"
+              "text": "Here's the expanded explanation. 📚\n\nI hope this gives you a clearer picture of the topic."
             }
           }
         ],
