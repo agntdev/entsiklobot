@@ -5,9 +5,9 @@
       {
         "expect": [
           {
-            "method": "sendMessage",
+            "method": "editMessageText",
             "payload": {
-              "text": "View full citations/URLs used for the current answer"
+              "text": "The answers in this bot come from trusted reference sources. 🔍\n\nHere are the citations used to build this response."
             }
           }
         ],

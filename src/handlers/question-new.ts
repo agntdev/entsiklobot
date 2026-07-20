@@ -1,17 +1,19 @@
 import { Composer } from "grammy";
+import { inlineButton, inlineKeyboard, registerMainMenuItem } from "../toolkit/index.js";
+import type { Ctx } from "../bot.js";
 
-// SCAFFOLD — generated from the bot blueprint BEFORE the agent runs.
-// Keep a LIVE registration (.command / .callbackQuery / …) so this feature is
-// never an empty stub. Replace the reply body with real logic + copy; if you
-// change the user-facing text, update tests/specs to match EXACTLY.
-// Do NOT rewrite src/bot.ts — buildBot() already auto-loads this module.
-// Menu: wire this into /start via registerMainMenuItem({ label: "New question", data: "question:new" }) if the toolkit exposes it.
+registerMainMenuItem({ label: "New question", data: "question:new", order: 20 });
 
-const composer = new Composer();
+const composer = new Composer<Ctx>();
+
+const NEW_QUESTION =
+  "Sure, let's try a new question. 🔄\n\nType your question or pick a topic below.";
 
 composer.callbackQuery("question:new", async (ctx) => {
   await ctx.answerCallbackQuery();
-  await ctx.reply("Reset session and prompt for a new question");
+  await ctx.editMessageText(NEW_QUESTION, {
+    reply_markup: inlineKeyboard([[inlineButton("⬅️ Back to menu", "menu:main")]]),
+  });
 });
 
 export default composer;

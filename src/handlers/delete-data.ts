@@ -1,15 +1,16 @@
 import { Composer } from "grammy";
+import { inlineButton, inlineKeyboard } from "../toolkit/index.js";
+import type { Ctx } from "../bot.js";
 
-// SCAFFOLD — generated from the bot blueprint BEFORE the agent runs.
-// Keep a LIVE registration (.command / .callbackQuery / …) so this feature is
-// never an empty stub. Replace the reply body with real logic + copy; if you
-// change the user-facing text, update tests/specs to match EXACTLY.
-// Do NOT rewrite src/bot.ts — buildBot() already auto-loads this module.
+const composer = new Composer<Ctx>();
 
-const composer = new Composer();
+const DELETE =
+  "Your session data has been cleared. 🗑️\n\nAll current information, questions, and answers have been removed from your session.";
 
 composer.command("delete_data", async (ctx) => {
-  await ctx.reply("Clear stored session history and email (if provided)");
+  await ctx.reply(DELETE, {
+    reply_markup: inlineKeyboard([[inlineButton("⬅️ Back to menu", "menu:main")]]),
+  });
 });
 
 export default composer;
