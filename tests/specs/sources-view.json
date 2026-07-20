@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Sources",
+    "steps": [
+      {
+        "expect": [
+          {
+            "method": "sendMessage",
+            "payload": {
+              "text": "View full citations/URLs used for the current answer"
+            }
+          }
+        ],
+        "send": {
+          "callback": "sources:view"
+        }
+      }
+    ]
+  }
+]
