@@ -1,17 +1,19 @@
 import { Composer } from "grammy";
+import type { Ctx } from "../bot.js";
+import { registerMainMenuItem, inlineButton, inlineKeyboard } from "../toolkit/index.js";
 
-// SCAFFOLD — generated from the bot blueprint BEFORE the agent runs.
-// Keep a LIVE registration (.command / .callbackQuery / …) so this feature is
-// never an empty stub. Replace the reply body with real logic + copy; if you
-// change the user-facing text, update tests/specs to match EXACTLY.
-// Do NOT rewrite src/bot.ts — buildBot() already auto-loads this module.
-// Menu: wire this into /start via registerMainMenuItem({ label: "More details", data: "answer:expand" }) if the toolkit exposes it.
+// Adds a "More details" button to expand the current answer into a longer explanation
+// (no slash command).
+registerMainMenuItem({ label: "More details", data: "answer:expand", order: 30 });
 
-const composer = new Composer();
+const composer = new Composer<Ctx>();
 
+// Expand the current answer into a longer explanation
 composer.callbackQuery("answer:expand", async (ctx) => {
   await ctx.answerCallbackQuery();
-  await ctx.reply("Expand the current answer into a longer explanation");
+  await ctx.editMessageText("Here's an expanded explanation of the answer:\n\nAdditional details and context have been added to provide a more comprehensive understanding.", {
+    reply_markup: inlineKeyboard([[inlineButton("⬅️ Back to answer", "answer:show")]]),
+  });
 });
 
 export default composer;

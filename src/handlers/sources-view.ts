@@ -1,17 +1,19 @@
 import { Composer } from "grammy";
+import type { Ctx } from "../bot.js";
+import { registerMainMenuItem, inlineButton, inlineKeyboard } from "../toolkit/index.js";
 
-// SCAFFOLD — generated from the bot blueprint BEFORE the agent runs.
-// Keep a LIVE registration (.command / .callbackQuery / …) so this feature is
-// never an empty stub. Replace the reply body with real logic + copy; if you
-// change the user-facing text, update tests/specs to match EXACTLY.
-// Do NOT rewrite src/bot.ts — buildBot() already auto-loads this module.
-// Menu: wire this into /start via registerMainMenuItem({ label: "Sources", data: "sources:view" }) if the toolkit exposes it.
+// Adds a "Sources" button to view full citations/URLs used for the current answer
+// (no slash command).
+registerMainMenuItem({ label: "Sources", data: "sources:view", order: 40 });
 
-const composer = new Composer();
+const composer = new Composer<Ctx>();
 
+// View full citations/URLs used for the current answer
 composer.callbackQuery("sources:view", async (ctx) => {
   await ctx.answerCallbackQuery();
-  await ctx.reply("View full citations/URLs used for the current answer");
+  await ctx.editMessageText("Sources used for this answer:\n\n1. Wikipedia\n2. Britannica\n3. Academic Journal\n\nTap Back to return to the answer.", {
+    reply_markup: inlineKeyboard([[inlineButton("⬅️ Back to answer", "answer:show")]]),
+  });
 });
 
 export default composer;

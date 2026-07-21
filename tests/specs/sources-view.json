@@ -1,19 +1,20 @@
 [
   {
-    "name": "Sources",
+    "name": "Sources view shows citations",
     "steps": [
       {
+        "send": { "callback": "sources:view" },
         "expect": [
           {
-            "method": "sendMessage",
+            "method": "answerCallbackQuery"
+          },
+          {
+            "method": "editMessageText",
             "payload": {
-              "text": "View full citations/URLs used for the current answer"
+              "text": "Sources used for this answer:\n\n1. Wikipedia\n2. Britannica\n3. Academic Journal\n\nTap Back to return to the answer."
             }
           }
-        ],
-        "send": {
-          "callback": "sources:view"
-        }
+        ]
       }
     ]
   }
