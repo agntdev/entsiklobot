@@ -1,19 +1,20 @@
 [
   {
-    "name": "New question",
+    "name": "New question resets session",
     "steps": [
       {
+        "send": { "callback": "question:new" },
         "expect": [
           {
-            "method": "sendMessage",
+            "method": "answerCallbackQuery"
+          },
+          {
+            "method": "editMessageText",
             "payload": {
-              "text": "Reset session and prompt for a new question"
+              "text": "Ready for a new question. Please ask anything!"
             }
           }
-        ],
-        "send": {
-          "callback": "question:new"
-        }
+        ]
       }
     ]
   }

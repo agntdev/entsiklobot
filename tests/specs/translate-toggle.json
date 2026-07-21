@@ -1,19 +1,20 @@
 [
   {
-    "name": "Translate",
+    "name": "Translate toggle changes answer",
     "steps": [
       {
+        "send": { "callback": "translate:toggle" },
         "expect": [
           {
-            "method": "sendMessage",
+            "method": "answerCallbackQuery"
+          },
+          {
+            "method": "editMessageText",
             "payload": {
-              "text": "Toggle translation of the current answer between Russian and English"
+              "text": "Translation toggled! Answer in English.\n\nThe content has been translated from Russian to English. Tap Back to return to the original answer."
             }
           }
-        ],
-        "send": {
-          "callback": "translate:toggle"
-        }
+        ]
       }
     ]
   }

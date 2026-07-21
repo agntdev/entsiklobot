@@ -1,19 +1,20 @@
 [
   {
-    "name": "More details",
+    "name": "More details expands answer",
     "steps": [
       {
+        "send": { "callback": "answer:expand" },
         "expect": [
           {
-            "method": "sendMessage",
+            "method": "answerCallbackQuery"
+          },
+          {
+            "method": "editMessageText",
             "payload": {
-              "text": "Expand the current answer into a longer explanation"
+              "text": "Here's an expanded explanation of the answer:\n\nAdditional details and context have been added to provide a more comprehensive understanding."
             }
           }
-        ],
-        "send": {
-          "callback": "answer:expand"
-        }
+        ]
       }
     ]
   }

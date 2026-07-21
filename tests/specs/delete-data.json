@@ -1,19 +1,17 @@
 [
   {
-    "name": "/delete_data",
+    "name": "/delete_data clears data",
     "steps": [
       {
+        "send": { "text": "/delete_data" },
         "expect": [
           {
             "method": "sendMessage",
             "payload": {
-              "text": "Clear stored session history and email (if provided)"
+              "text": "🗑️ Your session history and email (if provided) have been cleared."
             }
           }
-        ],
-        "send": {
-          "text": "/delete_data"
-        }
+        ]
       }
     ]
   }
